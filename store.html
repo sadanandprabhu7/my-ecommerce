@@ -28,19 +28,29 @@
     <div class="popup-container" id="conatiner">
       <div class="popup">
         <button id="close">&times;</button>
-
-        <div class="main-box">
-          <div class="header-box">
-            <div class="head-titles">TITLE</div>
-            <div class="head-titles">PRICE</div>
-            <div class="head-titles">QUANTITY</div>
-          </div>
-        </div>
-        <div class="conten-box" id="me-cart">
-          <div class="head-titles">TITLE</div>
-          <div class="head-titles">PRICE</div>
-          <div class="head-titles">QUANTITY</div>
-        </div>
+        <table id="table">
+          <tr>
+            <th>TITLLE</th>
+            <th>PRICE</th>
+            <th>QUANTITY</th>
+          </tr>
+          <!-- <tr>
+            <td>
+              <img
+                class="cart-item-image"
+                src="Images/Shirt.png"
+                width="100"
+                height="100"
+              />
+              <span>product 1</span>
+            </td>
+            <td><span>$9.99</span></td>
+            <td>
+              <input type="number" value="1" />
+              <button type="button">REMOVE</button>
+            </td>
+          </tr> -->
+        </table>
       </div>
     </div>
     <!--THIS IS FOR MUSIC ALBUM TO BUY-->
@@ -74,7 +84,7 @@
 
     <!-- START CART SECTION here we can see all the items which are present in CART OR ADDED-->
 
-    <section class="container content-section">
+    <!-- <section class="container content-section">
       <h2 class="section-header">CART</h2>
 
       <div class="cart-row">
@@ -83,22 +93,6 @@
         <span class="cart-quantity cart-header cart-column">QUANTITY</span>
       </div>
       <div class="cart-items">
-        <div class="cart-row">
-          <div class="cart-item cart-column">
-            <img
-              class="cart-item-image"
-              src="Images/Shirt.png"
-              width="100"
-              height="100"
-            />
-            <span class="cart-item-title">T-Shirt</span>
-          </div>
-          <span class="cart-price cart-column">$19.99</span>
-          <div class="cart-quantity cart-column">
-            <input class="cart-quantity-input" type="number" value="1" />
-            <button class="btn btn-danger" type="button">REMOVE</button>
-          </div>
-        </div>
         <div class="cart-row">
           <div class="cart-item cart-column">
             <img
@@ -125,7 +119,7 @@
       <button class="btn btn-primary btn-purchase" type="button">
         PURCHASE
       </button>
-    </section>
+    </section> -->
 
     <!--END CART SECTION-->
 

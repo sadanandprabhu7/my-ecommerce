@@ -10,7 +10,7 @@ exports.cartAllItems = (req, res, next) => {
       return cart
         .getProducts()
         .then((products) => {
-          res.json({ products });
+          res.json({ products: products });
         })
         .catch((err) => console.log(err));
     })
