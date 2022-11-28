@@ -15,7 +15,7 @@ close.addEventListener("click", () => {
 
 const parentDiv = document.getElementsByClassName("shop-items")[0];
 const pagination = document.getElementById("pagination");
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("load", () => {
   const page = 1;
   axios.get(`http://localhost:3000/products?page=${page}`).then((res) => {
     console.log(res.data.products);
@@ -138,4 +138,12 @@ showCart.addEventListener("click", () => {
     .catch((err) => {
       console.log(err);
     });
+});
+
+const submit = document.getElementById("submitCart");
+
+submit.addEventListener("click", () => {
+  axios.post("http://localhost:3000/orders").then((res) => {
+    console.log(res.data.message);
+  });
 });
