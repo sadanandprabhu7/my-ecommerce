@@ -2,6 +2,8 @@ const Product = require("../models/product");
 const CartItem = require("../models/cart-item");
 const Cart = require("../models/cart");
 const User = require("../models/user");
+const OderItem = require("../models/order-item");
+const Order = require("../models/order");
 
 exports.cartDetails = (req, res, next) => {
   const prodId = req.body.productId;
@@ -25,7 +27,7 @@ exports.cartDetails = (req, res, next) => {
         newQuantity = oldQuantity + 1;
         return product;
       }
-      return Product.findById(prodId);
+      return Product.findByPk(prodId);
     })
     .then((product) => {
       return fetchedCart.addProduct(product, {
@@ -38,4 +40,31 @@ exports.cartDetails = (req, res, next) => {
     .catch((err) => {
       res.json({ message: "Unable to Process" });
     });
+};
+
+exports.orders = (req, res, next) => {
+  let fetchedCart;
+  req.user
+    .getCart()
+    .then((cart) => {
+      fetchedCart = cart;
+      return cart.getProducts();
+    })
+    .then((products) => {
+      req.user.createOrder().then((order) => {
+        return order.addProducts(
+          products.map((product) => {
+            product.orderItem = { quantity: product.cartItem.quantity };
+            return product;
+          })
+        );
+      });
+    })
+    .then((result) => {
+      return fetchedCart.setProducts(null);
+    })
+    .then((result) => {
+      res.status(200).json({ message: "successfully orders" });
+    })
+    .catch((err) => console.log(err));
 };

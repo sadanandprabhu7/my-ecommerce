@@ -14,4 +14,6 @@ router.post("/cart", cartControllers.cartDetails);
 
 router.get("/items", cartProducts.cartAllItems);
 
+router.post("/orders", cartControllers.orders);
+
 module.exports = router;
