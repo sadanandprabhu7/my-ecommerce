@@ -77,3 +77,22 @@ td {
 table {
   border-spacing: 10px;
 }
+
+.pagination {
+  margin-top: 2rem;
+  text-align: center;
+}
+.pagination a {
+  text-decoration: none;
+  color: white;
+  padding: 0.5rem;
+  border: 1px solid #56ccf2;
+  background: #56ccf2;
+  margin: 1rem;
+}
+
+/* .pagination a:hover,
+.pagination a:active {
+  background: #56ccf2;
+  color: #56ccf2;
+} */
