@@ -15,10 +15,11 @@ exports.shopProducts = (req, res, next) => {
     .then((products) => {
       res.json({
         products: products,
+
         currentPage: page,
         hasNextPage: ITEMS_PER_PAGE * page < totalItems,
-        nextPage: page + 1,
         hasPriviousPage: page > 1,
+        nextPage: page + 1,
         previosPage: page - 1,
         lastPage: Math.ceil(totalItems / ITEMS_PER_PAGE),
       });

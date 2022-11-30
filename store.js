@@ -48,6 +48,13 @@ function productList({
   lastPage,
 }) {
   pagination.innerHTML = "";
+
+  if (currentPage !== 1 && priviousPage !== 1) {
+    const btn1 = document.createElement("button");
+    btn1.innerHTML = 1;
+    btn1.addEventListener("click", () => getProducts(1));
+    pagination.appendChild(btn1);
+  }
   if (hasPreviousPage) {
     const btn2 = document.createElement("button");
     btn2.innerHTML = priviousPage;
@@ -56,7 +63,7 @@ function productList({
   }
   const btn1 = document.createElement("button");
   btn1.innerHTML = `<h3>${currentPage}</h3>`;
-  btn1.addEventListener("click", () => getProducts(nextPage));
+  btn1.addEventListener("click", () => getProducts(currentPage));
   pagination.appendChild(btn1);
 
   if (hasNextPage) {
@@ -65,7 +72,12 @@ function productList({
     btn3.addEventListener("click", () => getProducts(nextPage));
     pagination.appendChild(btn3);
   }
-  if (lastPage) return (currentPage = 1);
+  if (lastPage !== currentPage && nextPage !== lastPage) {
+    const btn4 = document.createElement("button");
+    btn4.innerHTML = lastPage;
+    btn4.addEventListener("click", () => getProducts(lastPage));
+    pagination.appendChild(btn4);
+  }
 }
 function getProducts(page) {
   axios
@@ -110,13 +122,18 @@ function CreateNotification(message) {
 const showCart = document.getElementById("open");
 
 showCart.addEventListener("click", () => {
-  const parentOl = document.getElementsByClassName("cart-items")[0];
   const parentTd = document.getElementById("table");
+  parentTd.innerHTML = "";
   axios
     .get("http://localhost:3000/items")
     .then((res) => {
       res.data.products.forEach((product) => {
-        const newItem = `<tr>
+        const newItem = `  <tr>
+            <th>TITLLE</th>
+            <th>PRICE</th>
+            <th>QUANTITY</th>
+          </tr>
+        <tr>
             <td>
               <img
                 class="cart-item-image"
@@ -129,9 +146,9 @@ showCart.addEventListener("click", () => {
             <td><span>$${product.price}</span></td>
             <td>
               <input type="number" value="${product.cartItem.quantity}" />
+              
               <button type="button">REMOVE</button>
-            </td>
-          </tr>`;
+            </td>`;
         parentTd.innerHTML += newItem;
       });
     })
@@ -143,7 +160,10 @@ showCart.addEventListener("click", () => {
 const submit = document.getElementById("submitCart");
 
 submit.addEventListener("click", () => {
+  const parentTd = document.getElementById("table");
   axios.post("http://localhost:3000/orders").then((res) => {
     console.log(res.data.message);
+
+    parentTd.innerHTML = "";
   });
 });

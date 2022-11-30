@@ -23,6 +23,10 @@ window.addEventListener("DOMContentLoaded", () => {
               <label>${product.orderItem.quantity}</label>
             
             </td>
+            <td>
+              <label>${order.id}</label>
+            
+            </td>
           </tr>`;
           parent.innerHTML += newItem;
         });
