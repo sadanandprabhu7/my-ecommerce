@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const Sequelize = require("sequelize");
 const sequelize = require("./util/database");
 const env = require("dotenv");
-
+const path = require("path");
 const shopProducts = require("./routes/main");
 
 //const Sequelize = require("sequelize");
@@ -38,6 +38,12 @@ app.use(shopProducts);
 
 app.post("/showDetails", (req, res, next) => {
   res.json({ data: "sada" });
+});
+
+//use this if ur front end is some other folder
+app.use((req, res) => {
+  console.log(req.url);
+  res.sendFile(path.join(__dirname, `public/${req.url}`));
 });
 
 //  RELATION DEFINED HERE
