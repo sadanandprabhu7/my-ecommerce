@@ -40,7 +40,7 @@ app.post("/showDetails", (req, res, next) => {
   res.json({ data: "sada" });
 });
 
-//use this if ur front end is some other folder
+//to deploye front end
 app.use((req, res) => {
   console.log(req.url);
   res.sendFile(path.join(__dirname, `public/${req.url}`));
